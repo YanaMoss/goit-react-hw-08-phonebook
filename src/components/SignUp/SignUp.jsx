@@ -1,6 +1,6 @@
 import { Form, Button, FloatingLabel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-export default function RegistrationForm() {
+export default function SingUpPage() {
   return (
     <section>
       <Form>
@@ -18,13 +18,6 @@ export default function RegistrationForm() {
           </FloatingLabel>
           <FloatingLabel controlId="floatingPassword" label="Password">
             <Form.Control size="lg" type="password" placeholder="Password" />
-          </FloatingLabel>
-          <FloatingLabel controlId="floatingPassword" label="Confirm password">
-            <Form.Control
-              size="lg"
-              type="confirm password"
-              placeholder="Confirm password"
-            />
           </FloatingLabel>
         </>
         <Button variant="primary" type="submit">

@@ -6,11 +6,11 @@ import { ItemContact } from './Contacts.styled';
 import { ItemListContact } from './Contacts.styled';
 import { Button } from '../Button/Button';
 import { List } from './Contacts.styled';
-import { getListContact } from '../../redux/phonebook-selectors';
+import { getListContact } from '../../redux/phonebook/phonebook-selectors';
 import {
   useGetContactsQuery,
   useDeleteContactMutation,
-} from '../../redux/phonebook-operation';
+} from '../../redux/phonebook/phonebook-operation';
 
 export function ContactList() {
   const { data } = useGetContactsQuery();

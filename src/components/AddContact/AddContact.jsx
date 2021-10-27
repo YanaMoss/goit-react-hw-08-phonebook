@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useAddContactMutation } from '../../redux/phonebook-operation';
+import { useAddContactMutation } from '../../redux/phonebook/phonebook-operation';
 import inputForms from '../data/inputForms.json';
 import { Form } from './AddContactForm.styled';
 import { Label } from './AddContactForm.styled';
@@ -11,8 +11,6 @@ export default function AddContact() {
   const [number, setNumber] = useState('');
   const [addContact] = useAddContactMutation();
 
-  console.log('name', name);
-  console.log('number', number);
   const handleChange = ({ name }, value) => {
     switch (name) {
       case 'name':
@@ -28,8 +26,6 @@ export default function AddContact() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log('name onSubmit', name);
-    console.log('number onSubmit', number);
     addContact({ name, number });
     reset(e);
   };
