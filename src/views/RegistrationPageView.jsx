@@ -1,14 +1,15 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
 import InputForm from '../components/InputForm/InputForm';
 import registerForm from '../components/data/registerForm.json';
-import { useRegisterMutation } from '../redux/auth/auth-operation';
+import { authOperations } from '../redux/auth';
 
 export default function RegistrationPageView() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [register] = useRegisterMutation();
+  const dispatch = useDispatch();
 
   const handleChange = ({ name }, value) => {
     console.log(value);
@@ -30,7 +31,7 @@ export default function RegistrationPageView() {
   const handleSubmit = e => {
     console.log({ name, email, password });
     e.preventDefault();
-    register({ name, email, password });
+    dispatch(authOperations.register({ name, email, password }));
     reset(e);
   };
 

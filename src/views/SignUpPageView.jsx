@@ -1,14 +1,16 @@
-import { useState } from 'react';
+/* eslint-disable no-undef */
 import { Form, Button } from 'react-bootstrap';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { authOperations } from '../redux/auth';
 // import SingUpPage from '../components/SignUp/SignUp';
-import { useSignUpMutation } from '../redux/auth/auth-operation';
 import loginForm from '../components/data/loginForm.json';
 import InputForm from '../components/InputForm/InputForm';
 
 export default function SingUpPageView() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [signUp] = useSignUpMutation();
+  const dispatch = useDispatch();
 
   const handleChange = ({ name }, value) => {
     console.log(value);
@@ -25,9 +27,8 @@ export default function SingUpPageView() {
   };
 
   const handleSubmit = e => {
-    console.log({ email, password });
     e.preventDefault();
-    signUp({ email, password });
+    dispatch(authOperations.logIn({ email, password }));
     reset(e);
   };
 
