@@ -5,8 +5,11 @@ import { lazy, Suspense } from 'react';
 import Loader from 'react-loader-spinner';
 import { Navigation } from '../Navigation/Navigation.jsx';
 import { UserMenu } from '../Navigation/UserMenu.jsx';
+import { PublicRoute } from '../PublicRoute.js';
+import { PrivateRoute } from '../PrivateRoute.js';
 import { AuthNavigation } from '../Navigation/AuthNavigation.jsx';
-import authSelectors from '../../redux/auth/auth-selectors.js';
+
+// import authSelectors from '../../redux/auth/auth-selectors.js';
 // import authSelectors from '../../redux/auth/auth-selector';
 // import { Container } from 'react-dom';
 
@@ -41,7 +44,7 @@ export function AppBar() {
   return (
     <div>
       <Navigation children={isLoggedIn ? <UserMenu /> : <AuthNavigation />} />
-      <Suspense
+      {/* <Suspense
         fallback={
           <Loader
             type="Puff"
@@ -56,18 +59,18 @@ export function AppBar() {
           <Route path="/" exact>
             <HomePage />
           </Route>
-          <Route path="/registration" exact>
+          <PublicRoute exact path="/registration" restricted>
             <RegistrationPage />
-          </Route>
-          <Route path="/autorization" exact>
+          </PublicRoute>
+          <Route exact path="/autorization" restricted>
             <SignInPage />
           </Route>
           <Route path="/create-contact" exact>
             <CreateContactsPage />
           </Route>
-          <Route path="/contacts" exact>
+          <PrivateRoute path="/contacts" exact>
             <ContactsPage />
-          </Route>
+          </PrivateRoute>
           <Route path="/logout" exact>
             <LogoutPage />
           </Route>
@@ -75,7 +78,7 @@ export function AppBar() {
             <NotFoundView />
           </Route>
         </Switch>
-      </Suspense>
+      </Suspense> */}
     </div>
   );
 }

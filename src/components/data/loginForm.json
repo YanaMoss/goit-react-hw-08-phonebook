@@ -5,7 +5,7 @@
     "name": "Email"
   },
   {
-    "id": "idEmail",
+    "id": "idPassword",
     "type": "text",
     "name": "Password"
   }

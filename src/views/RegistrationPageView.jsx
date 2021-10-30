@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import InputForm from '../components/InputForm/InputForm';
 import registerForm from '../components/data/registerForm.json';
@@ -10,9 +12,9 @@ export default function RegistrationPageView() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
 
   const handleChange = ({ name }, value) => {
-    console.log(value);
     switch (name) {
       case 'Name':
         setName(() => value);
@@ -29,7 +31,6 @@ export default function RegistrationPageView() {
   };
 
   const handleSubmit = e => {
-    console.log({ name, email, password });
     e.preventDefault();
     dispatch(authOperations.register({ name, email, password }));
     reset(e);
@@ -39,26 +40,32 @@ export default function RegistrationPageView() {
     setName('');
     setEmail('');
     setPassword('');
-    console.log(e.target[0].value);
     e.target[0].value = '';
     e.target[1].value = '';
     e.target[2].value = '';
   };
   return (
     <section>
-      <Form onSubmit={handleSubmit}>
-        <>
-          {registerForm.map(({ name }) => (
-            <InputForm
-              name={name}
-              onChange={event => handleChange({ name }, event.target.value)}
-            />
-          ))}
-        </>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
+      {isLoggedIn ? (
+        <p>
+          Congratulations! You have successfully registered.{' '}
+          <Link to="/contacts">Go to work with contacts</Link>
+        </p>
+      ) : (
+        <Form onSubmit={handleSubmit}>
+          <>
+            {registerForm.map(({ name }) => (
+              <InputForm
+                name={name}
+                onChange={event => handleChange({ name }, event.target.value)}
+              />
+            ))}
+          </>
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
+      )}
     </section>
   );
 }

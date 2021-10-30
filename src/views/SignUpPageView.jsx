@@ -13,7 +13,6 @@ export default function SingUpPageView() {
   const dispatch = useDispatch();
 
   const handleChange = ({ name }, value) => {
-    console.log(value);
     switch (name) {
       case 'Email':
         setEmail(() => value);
@@ -42,8 +41,9 @@ export default function SingUpPageView() {
     <section>
       <Form onSubmit={handleSubmit}>
         <>
-          {loginForm.map(({ name }) => (
+          {loginForm.map(({ name, id }) => (
             <InputForm
+              key={id}
               name={name}
               onChange={event => handleChange({ name }, event.target.value)}
             />
