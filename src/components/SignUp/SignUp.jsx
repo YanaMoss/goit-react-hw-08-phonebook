@@ -1,8 +1,9 @@
 import { Form, Button, FloatingLabel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Section } from '../Section/Section';
 export default function SingUpPage() {
   return (
-    <section>
+    <Section>
       <Form>
         <>
           <FloatingLabel
@@ -24,6 +25,6 @@ export default function SingUpPage() {
           Submit
         </Button>
       </Form>
-    </section>
+    </Section>
   );
 }

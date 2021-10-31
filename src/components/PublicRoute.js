@@ -6,8 +6,9 @@ export const PublicRoute = ({
   restricted = false,
   ...routeProps
 }) => {
-  const isLoggedIn = useSelector(state => state.isLoggedIn);
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   const shouldRedirect = isLoggedIn && restricted;
+  console.log(shouldRedirect);
   return (
     <Route {...routeProps}>
       {shouldRedirect ? <Redirect to="/contacts" /> : children}

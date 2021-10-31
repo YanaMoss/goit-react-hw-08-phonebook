@@ -11,6 +11,6 @@ export const ItemContact = styled.span`
 `;
 
 export const List = styled.ul`
-  padding: 0px;
+  padding: 15px;
   font-size: 20px;
 `;

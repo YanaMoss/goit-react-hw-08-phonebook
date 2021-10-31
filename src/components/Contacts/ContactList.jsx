@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { BsFillTrashFill } from 'react-icons/bs';
 import { ItemContact } from './Contacts.styled';
 import { ItemListContact } from './Contacts.styled';
 import { Button } from '../Button/Button';
@@ -15,6 +16,7 @@ import {
 export function ContactList() {
   const { data } = useGetContactsQuery();
   const [deleteContact] = useDeleteContactMutation();
+
   const contacts = useSelector(state => getListContact(data, state));
 
   return (
@@ -25,9 +27,11 @@ export function ContactList() {
             <ItemContact>{name}:</ItemContact>
             <ItemContact>{number}</ItemContact>
             <Button
+              children={BsFillTrashFill}
               title={'Delete'}
               type="button"
               onClick={() => deleteContact(id)}
+              className="Add"
             />
           </ItemListContact>
         ))}

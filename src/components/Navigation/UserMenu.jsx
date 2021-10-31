@@ -2,12 +2,13 @@ import { NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../../redux/auth';
+import { NavItem, NavList } from './AuthNavigation.styled';
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
   return (
-    <ul>
-      <li>
+    <NavList>
+      <NavItem>
         <NavLink
           exact
           to="/contacts"
@@ -16,19 +17,14 @@ export const UserMenu = () => {
         >
           Contacts
         </NavLink>
-      </li>
-      <li>
-        <NavLink
-          exact
-          to="/logout"
-          className="NavLink"
-          activeClassName="NavLink--active"
-        >
+      </NavItem>
+      <NavItem>
+        <NavLink exact to="/logout">
           <Link to="/logout" onClick={() => dispatch(authOperations.logOut())}>
             Log out
           </Link>
         </NavLink>
-      </li>
-    </ul>
+      </NavItem>
+    </NavList>
   );
 };

@@ -6,6 +6,7 @@ import { Form, Button } from 'react-bootstrap';
 import InputForm from '../components/InputForm/InputForm';
 import registerForm from '../components/data/registerForm.json';
 import { authOperations } from '../redux/auth';
+import { Section } from '../components/Section/Section';
 
 export default function RegistrationPageView() {
   const [name, setName] = useState('');
@@ -45,27 +46,21 @@ export default function RegistrationPageView() {
     e.target[2].value = '';
   };
   return (
-    <section>
-      {isLoggedIn ? (
-        <p>
-          Congratulations! You have successfully registered.{' '}
-          <Link to="/contacts">Go to work with contacts</Link>
-        </p>
-      ) : (
-        <Form onSubmit={handleSubmit}>
-          <>
-            {registerForm.map(({ name }) => (
-              <InputForm
-                name={name}
-                onChange={event => handleChange({ name }, event.target.value)}
-              />
-            ))}
-          </>
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Form>
+    <Section>
+      <Form onSubmit={handleSubmit}>
+        <>
+          {registerForm.map(({ name }) => (
+            <InputForm
+              name={name}
+              onChange={event => handleChange({ name }, event.target.value)}
+            />
+          ))}
+        </>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
       )}
-    </section>
+    </Section>
   );
 }

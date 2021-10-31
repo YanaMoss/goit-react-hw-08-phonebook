@@ -6,12 +6,13 @@ import { Form } from './AddContactForm.styled';
 import { Label } from './AddContactForm.styled';
 import { Input } from './AddContactForm.styled';
 import { ButtonPhonebook } from '../Button/Button.styled';
+import { Redirect } from 'react-router';
 
 export default function AddContact({ closeForm }) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const [addContact] = useAddContactMutation();
-  const [openForm, setOpenForm] = useState(false);
+  const [openForm, setOpenForm] = useState(true);
 
   const handleChange = ({ name }, value) => {
     switch (name) {
@@ -61,7 +62,7 @@ export default function AddContact({ closeForm }) {
           <ButtonPhonebook type="submit">Add contact</ButtonPhonebook>
         </Form>
       ) : (
-        <Button onClick={() => setOpenForm(true)}>+</Button>
+        <Redirect to="/contacts"></Redirect>
       )}
     </>
   );

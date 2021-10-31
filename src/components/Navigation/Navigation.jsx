@@ -1,24 +1,10 @@
 import { NavLink } from 'react-router-dom';
-
+import { HeaderNavigation } from './Navigation.styled';
 export const Navigation = ({ children }) => (
-  <header>
-    <ul>
-      <li>
-        <NavLink
-          activeClassName="NavLink--active"
-          exact
-          to="/"
-          className="NavLink"
-        >
-          <h1>PhoneBook</h1>
-        </NavLink>
-      </li>
-      {/* <li>
-        <NavLink exact to="/" className="NavLink">
-          
-        </NavLink>
-      </li> */}
-      <li>{children}</li>
-    </ul>
-  </header>
+  <HeaderNavigation>
+    <NavLink exact to="/">
+      <h1>PhoneBook</h1>
+    </NavLink>
+    {children}
+  </HeaderNavigation>
 );

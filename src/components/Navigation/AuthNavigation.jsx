@@ -1,12 +1,12 @@
 import { NavLink } from 'react-router-dom';
 import { useRouteMatch } from 'react-router';
+import { NavItem, NavList } from './AuthNavigation.styled';
 
 export const AuthNavigation = () => {
   const { url } = useRouteMatch();
-  console.log(url);
   return (
-    <ul>
-      <li>
+    <NavList>
+      <NavItem>
         <NavLink
           exact
           to="/autorization"
@@ -15,8 +15,8 @@ export const AuthNavigation = () => {
         >
           Sign in
         </NavLink>
-      </li>
-      <li>
+      </NavItem>
+      <NavItem>
         <NavLink
           exact
           to="/registration"
@@ -25,7 +25,7 @@ export const AuthNavigation = () => {
         >
           Registration
         </NavLink>
-      </li>
-    </ul>
+      </NavItem>
+    </NavList>
   );
 };

@@ -3,9 +3,9 @@ import { Form, Button } from 'react-bootstrap';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../redux/auth';
-// import SingUpPage from '../components/SignUp/SignUp';
 import loginForm from '../components/data/loginForm.json';
 import InputForm from '../components/InputForm/InputForm';
+import { Section } from '../components/Section/Section';
 
 export default function SingUpPageView() {
   const [email, setEmail] = useState('');
@@ -38,7 +38,7 @@ export default function SingUpPageView() {
     e.target[1].value = '';
   };
   return (
-    <section>
+    <Section>
       <Form onSubmit={handleSubmit}>
         <>
           {loginForm.map(({ name, id }) => (
@@ -53,6 +53,6 @@ export default function SingUpPageView() {
           Submit
         </Button>
       </Form>
-    </section>
+    </Section>
   );
 }
