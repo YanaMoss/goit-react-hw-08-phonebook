@@ -1,7 +1,3 @@
-// import AddContact from './components/AddContact/AddContact';
-// import { FindContact } from './components/Contacts/FindContact';
-// import { ContactList } from './components/Contacts/ContactList';
-// import { Section } from './components/Section/Section';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Redirect } from 'react-router';
@@ -10,7 +6,8 @@ import { lazy, Suspense } from 'react';
 import Loader from 'react-loader-spinner';
 import { authOperations } from './redux/auth';
 import { Container } from 'react-bootstrap';
-// import { Container } from './components/App/App.styled';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { AppBar } from './components/AppBar/AppBar';
 import { PublicRoute } from './components/PublicRoute';
 import { PrivateRoute } from './components/PrivateRoute.js';
@@ -74,6 +71,7 @@ export default function App() {
           </Switch>
         </Suspense>
       </Container>
+      <ToastContainer />
     </>
   );
 }

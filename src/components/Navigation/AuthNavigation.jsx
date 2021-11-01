@@ -1,9 +1,7 @@
 import { NavLink } from 'react-router-dom';
-import { useRouteMatch } from 'react-router';
 import { NavItem, NavList } from './AuthNavigation.styled';
 
 export const AuthNavigation = () => {
-  const { url } = useRouteMatch();
   return (
     <NavList>
       <NavItem>

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect, useDispatch } from 'react-redux';
 import { filterContact } from '../../redux/phonebook/phonebook-actions';
-import { Input } from '../AddContact/AddContactForm.styled';
 import InputForm from '../InputForm/InputForm';
 
 export function FindContact({ title }) {

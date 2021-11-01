@@ -1,8 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { connect } from 'react-redux';
+import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
-import { BsFillTrashFill } from 'react-icons/bs';
+import { BsFillTrashFill, BsFillFileEarmarkPersonFill } from 'react-icons/bs';
 import { ItemContact } from './Contacts.styled';
 import { ItemListContact } from './Contacts.styled';
 import { Button } from '../Button/Button';
@@ -18,21 +19,26 @@ export function ContactList() {
   const [deleteContact] = useDeleteContactMutation();
 
   const contacts = useSelector(state => getListContact(data, state));
-
+  const contactDelete = id => {
+    deleteContact(id);
+    toast.success('Сontact deleted.');
+  };
   return (
     <List>
       {contacts &&
         contacts.map(({ id, name, number }) => (
           <ItemListContact key={id}>
+            <BsFillFileEarmarkPersonFill />
             <ItemContact>{name}:</ItemContact>
             <ItemContact>{number}</ItemContact>
             <Button
-              children={BsFillTrashFill}
               title={'Delete'}
               type="button"
-              onClick={() => deleteContact(id)}
+              onClick={() => contactDelete(id)}
               className="Add"
-            />
+            >
+              <BsFillTrashFill />
+            </Button>
           </ItemListContact>
         ))}
     </List>

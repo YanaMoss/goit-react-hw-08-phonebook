@@ -6,6 +6,7 @@ import { NavItem, NavList } from './AuthNavigation.styled';
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
+
   return (
     <NavList>
       <NavItem>

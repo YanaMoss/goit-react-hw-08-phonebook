@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 const token = {
@@ -15,19 +16,20 @@ export const register = createAsyncThunk('auth/register', async credentials => {
   try {
     const { data } = await axios.post('/users/signup', credentials);
     token.set(data.token);
-
+    toast.success('Are you registered');
     return data;
   } catch (error) {
-    console.error(error.message);
+    throw new Error(toast.error('An error has occurred. Try again.'));
   }
 });
 export const logIn = createAsyncThunk('auth/login', async credentials => {
   try {
     const { data } = await axios.post('/users/login', credentials);
     token.set(data.token);
+    toast.success('You are logged in.');
     return data;
   } catch (error) {
-    console.error(error.message);
+    throw new Error(toast.error('An error has occurred. Try again.'));
   }
 });
 
@@ -35,8 +37,9 @@ export const logOut = createAsyncThunk('auth/logout', async () => {
   try {
     await axios.post('/users/logout');
     token.unset();
+    toast.success('You are logged out.');
   } catch (error) {
-    console.error(error.message);
+    throw new Error(toast.error('An error has occurred. Try again.'));
   }
 });
 
@@ -53,8 +56,12 @@ const fetchCurrentUser = createAsyncThunk(
     token.set(persistedToken);
     try {
       const { data } = await axios.get('/users/current');
+      toast.success('You are logged in.');
+
       return data;
-    } catch (error) {}
+    } catch (error) {
+      throw new Error(toast.error('An error has occurred. Try again.'));
+    }
   },
 );
 const operations = {

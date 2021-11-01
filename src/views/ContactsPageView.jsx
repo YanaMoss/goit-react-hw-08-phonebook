@@ -1,10 +1,9 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../components/Button/Button';
 import { ContactList } from '../components/Contacts/ContactList';
 import { FindContact } from '../components/Contacts/FindContact';
 import { Section } from '../components/Section/Section';
-import { GoPlus } from 'react-icons/go';
+import { AiOutlineUserAdd } from 'react-icons/ai';
 
 export default function ContactsPageView() {
   return (
@@ -12,8 +11,8 @@ export default function ContactsPageView() {
       <FindContact title={'Find contact by name'} />
       <ContactList />
       <Link to="/create-contact">
-        <Button>
-          <GoPlus />
+        <Button className="button-add">
+          <AiOutlineUserAdd size="25px" />
         </Button>
       </Link>
     </Section>

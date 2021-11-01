@@ -1,19 +1,20 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { Form, Button } from 'react-bootstrap';
+// import { Link } from 'react-router-dom';
+import { Form } from 'react-bootstrap';
 import InputForm from '../components/InputForm/InputForm';
 import registerForm from '../components/data/registerForm.json';
 import { authOperations } from '../redux/auth';
 import { Section } from '../components/Section/Section';
+import { ButtonPhonebook } from '../components/Button/Button.styled';
 
 export default function RegistrationPageView() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+  // const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
 
   const handleChange = ({ name }, value) => {
     switch (name) {
@@ -56,11 +57,10 @@ export default function RegistrationPageView() {
             />
           ))}
         </>
-        <Button variant="primary" type="submit">
+        <ButtonPhonebook variant="primary" type="submit">
           Submit
-        </Button>
+        </ButtonPhonebook>
       </Form>
-      )}
     </Section>
   );
 }

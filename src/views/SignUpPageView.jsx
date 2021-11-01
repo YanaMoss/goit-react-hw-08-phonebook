@@ -1,10 +1,11 @@
 /* eslint-disable no-undef */
-import { Form, Button } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../redux/auth';
 import loginForm from '../components/data/loginForm.json';
 import InputForm from '../components/InputForm/InputForm';
+import { ButtonPhonebook } from '../components/Button/Button.styled';
 import { Section } from '../components/Section/Section';
 
 export default function SingUpPageView() {
@@ -49,9 +50,9 @@ export default function SingUpPageView() {
             />
           ))}
         </>
-        <Button variant="primary" type="submit">
+        <ButtonPhonebook variant="primary" type="submit">
           Submit
-        </Button>
+        </ButtonPhonebook>
       </Form>
     </Section>
   );
