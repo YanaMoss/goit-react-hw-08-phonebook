@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ButtonPhonebook } from './Button.styled';
 
-export const Button = ({ title, type, onClick }) => (
+export const Button = ({ type, onClick, children }) => (
   <ButtonPhonebook type={type} onClick={onClick}>
-    {title}
+    {children}
   </ButtonPhonebook>
 );
 

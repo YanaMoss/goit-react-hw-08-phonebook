@@ -1,0 +1,12 @@
+[
+  {
+    "id": "idEmail",
+    "type": "mail",
+    "name": "Email"
+  },
+  {
+    "id": "idPassword",
+    "type": "text",
+    "name": "Password"
+  }
+]

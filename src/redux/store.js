@@ -1,22 +1,25 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { setupListeners } from '@reduxjs/toolkit/query';
-import { phonebookApi } from './phonebook-operation';
-import { filter } from './phonebook-reducer';
-// import phonebookReducer from './phonebook-reducer';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import { authReducer } from './auth';
+import { phonebookApi } from './phonebook/phonebook-operation';
+import { filter } from './phonebook/phonebook-reducer';
 
-const store = configureStore({
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['token'],
+};
+
+export const store = configureStore({
   reducer: {
+    auth: persistReducer(authPersistConfig, authReducer),
     [phonebookApi.reducerPath]: phonebookApi.reducer,
     filter,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat(phonebookApi.middleware),
+  devTools: process.env.NODE_ENV === 'development',
 });
-setupListeners(store.dispatch);
-// const store = configureStore({
-//   reducer: {
-//     phonebook: phonebookReducer,
-//   },
-// });
 
-export default store;
+export const persistor = persistStore(store);

@@ -1,26 +1,20 @@
-import { useState } from 'react';
-// import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-// import { Link } from 'react-router-dom';
+/* eslint-disable no-undef */
 import { Form } from 'react-bootstrap';
-import InputForm from '../components/InputForm/InputForm';
-import registerForm from '../components/data/registerForm.json';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { authOperations } from '../redux/auth';
-import { Section } from '../components/Section/Section';
+import loginForm from '../components/data/loginForm.json';
+import InputForm from '../components/InputForm/InputForm';
 import { ButtonPhonebook } from '../components/Button/Button.styled';
+import { Section } from '../components/Section/Section';
 
-export default function RegistrationPageView() {
-  const [name, setName] = useState('');
+export default function SingUpPageView() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-  // const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
 
   const handleChange = ({ name }, value) => {
     switch (name) {
-      case 'Name':
-        setName(() => value);
-        break;
       case 'Email':
         setEmail(() => value);
         break;
@@ -34,24 +28,23 @@ export default function RegistrationPageView() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(authOperations.register({ name, email, password }));
+    dispatch(authOperations.logIn({ email, password }));
     reset(e);
   };
 
   const reset = e => {
-    setName('');
     setEmail('');
     setPassword('');
     e.target[0].value = '';
     e.target[1].value = '';
-    e.target[2].value = '';
   };
   return (
     <Section>
       <Form onSubmit={handleSubmit}>
         <>
-          {registerForm.map(({ name }) => (
+          {loginForm.map(({ name, id }) => (
             <InputForm
+              key={id}
               name={name}
               onChange={event => handleChange({ name }, event.target.value)}
             />

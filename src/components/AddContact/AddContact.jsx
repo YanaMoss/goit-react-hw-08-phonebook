@@ -1,24 +1,24 @@
 import { useState } from 'react';
-import { useAddContactMutation } from '../../redux/phonebook-operation';
+import { useAddContactMutation } from '../../redux/phonebook/phonebook-operation';
 import inputForms from '../data/inputForms.json';
-import { Form } from './AddContactForm.styled';
-import { Label } from './AddContactForm.styled';
-import { Input } from './AddContactForm.styled';
+import { Form, FloatingLabel } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 import { ButtonPhonebook } from '../Button/Button.styled';
+import { Redirect } from 'react-router';
+import { Section } from '../Section/Section';
 
 export default function AddContact() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const [addContact] = useAddContactMutation();
+  const [openForm, setOpenForm] = useState(true);
 
-  console.log('name', name);
-  console.log('number', number);
   const handleChange = ({ name }, value) => {
     switch (name) {
-      case 'name':
+      case 'Name':
         setName(() => value);
         break;
-      case 'number':
+      case 'Number':
         setNumber(() => value);
         break;
       default:
@@ -28,36 +28,46 @@ export default function AddContact() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log('name onSubmit', name);
-    console.log('number onSubmit', number);
+    console.log({ name, number });
     addContact({ name, number });
+    toast.success('Contact added.');
     reset(e);
   };
   const reset = e => {
     setName('');
     setNumber('');
-    e.currentTarget.name.value = '';
-    e.currentTarget.number.value = '';
+    setOpenForm(false);
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      {inputForms.map(({ id, type, name, pattern, title, required }) => (
-        <Label htmlFor={id} key={name}>
-          <h3>{name}</h3>
-          <Input
-            id={id}
-            type={type}
-            name={name}
-            pattern={pattern}
-            title={title}
-            required={required}
-            placeholder={name}
-            onChange={event => handleChange({ name }, event.target.value)}
-          />
-        </Label>
-      ))}
-      <ButtonPhonebook type="submit">Add contact</ButtonPhonebook>
-    </Form>
+    <Section>
+      {openForm ? (
+        <Form onSubmit={handleSubmit}>
+          {inputForms.map(({ id, type, name, pattern, title, required }) => (
+            <FloatingLabel
+              htmlFor={id}
+              key={name}
+              label={name}
+              className="mb-3"
+            >
+              <Form.Control
+                size="lg"
+                id={id}
+                type={type}
+                name={name}
+                pattern={pattern}
+                title={title}
+                required={required}
+                placeholder={name}
+                onChange={event => handleChange({ name }, event.target.value)}
+              />
+            </FloatingLabel>
+          ))}
+          <ButtonPhonebook type="submit">Add contact</ButtonPhonebook>
+        </Form>
+      ) : (
+        <Redirect to="/contacts"></Redirect>
+      )}
+    </Section>
   );
 }
